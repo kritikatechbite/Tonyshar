@@ -18,7 +18,7 @@ review/index.html
 
 Change this line:
 
-const REDIRECT_URL = "https://example.com/";
+const REDIRECT_URL = "#";
 
 to your destination URL.
 
