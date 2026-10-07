@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>Continue | TonyShark</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<section class="page-hero">
+  <div class="shell narrow">
+    <span class="kicker">CONTINUE</span>
+    <h1>Taking you to the next page…</h1>
+    <p>If nothing happens, use the continue button below.</p>
+    <a id="continueBtn" class="btn primary" href="#">Continue</a>
+  </div>
+</section>
+
+<script>
+/*
+  CHANGE YOUR DESTINATION LINK ONLY HERE.
+  This redirect is the same for every visitor to /review/.
+*/
+const REDIRECT_URL = "https://example.com/";
+
+const allowed = new Set([
+  "gad_campaignid","gclid","gbraid","wbraid",
+  "utm_source","utm_medium","utm_campaign","utm_term","utm_content"
+]);
+
+function buildDestination() {
+  const target = new URL(REDIRECT_URL);
+  const incoming = new URLSearchParams(window.location.search);
+
+  for (const [key, value] of incoming.entries()) {
+    if (allowed.has(key) && value) {
+      target.searchParams.set(key, value);
+    }
+  }
+  return target.toString();
+}
+
+const destination = buildDestination();
+document.getElementById("continueBtn").href = destination;
+
+setTimeout(() => {
+  window.location.replace(destination);
+}, 300);
+</script>
+</body>
+</html>
